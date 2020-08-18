@@ -1,3 +1,4 @@
+boto==2.49.0
 branca==0.4.1
 certifi==2020.6.20
 chardet==3.0.4
