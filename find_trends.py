@@ -14,7 +14,7 @@ def find_current_trends():
 	response = requests.get(url=url, headers = {'authorization': 'Bearer ' + bearer})
 	response = response.json()
 	trending_cities = []
-	#print('Available trends acquired')
+	print('Available trends acquired')
 
 	for trend in response:
 		trending_cities.append([trend['name'], trend['country'], trend['woeid']])
@@ -31,10 +31,10 @@ def find_current_trends():
 	for woeid in woeids:
 		param = {'id':woeid}
 		response = requests.get(url = url2, headers = {'authorization': 'Bearer ' + bearer}, params = param).json()
-		#print('Acquiring trends for {}'.format(woeid))
+		print('Acquiring trends for {}'.format(woeid))
 		trends_in_woeids.append(response)	
 
-	3print('All trends acquired')
+	print('All trends acquired')
 	trending_seventy_in_woeids = trends_in_woeids[split_start:split_end]
 	l1 = []
 

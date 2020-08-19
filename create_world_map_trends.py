@@ -8,7 +8,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=16)
+@sched.scheduled_job('interval', minutes=10)
 def load_map_with_trends():
 
 	find_current_trends()
@@ -27,3 +27,5 @@ def load_map_with_trends():
 	m.save('templates/trends_on_the_map.html')
 
 	return None
+
+sched.start()
