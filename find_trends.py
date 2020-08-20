@@ -5,7 +5,7 @@ import pandas as pd
 
 def find_current_trends():
 
-	bearer_token = S3Connection(os.environ['BEARER_TOKEN'])
+	bearer_token = os.environ['BEARER_TOKEN']
 	inter_read  = open('inter.txt', 'r+')
 	inter = int(inter_read.read())
 	split_end = inter * 70
