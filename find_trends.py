@@ -45,7 +45,7 @@ def find_current_trends():
 			l2.append(j['name'])
 		l1.append(l2)
  	
-	Strending_seventy = trending_cities_df[split_start:split_end]
+	trending_seventy = trending_cities_df[split_start:split_end]
 	trending_seventy.insert(5, 'trends', l1)
 	trending_seventy.to_csv('trending_cities.csv')
 	if inter > 4:
