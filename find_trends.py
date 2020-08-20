@@ -6,7 +6,8 @@ import pandas as pd
 def find_current_trends():
 
 	bearer_token = S3Connection(os.environ['BEARER_TOKEN'])
-	inter  = S3Connection(os.environ['INTER'])
+	inter_read  = open('inter.txt', 'r+')
+	inter = int(inter_read.read())
 	split_end = inter * 70
 	split_start = split_end - 70
 	url = 'https://api.twitter.com/1.1/trends/available.json'
@@ -47,7 +48,11 @@ def find_current_trends():
 	Strending_seventy = trending_cities_df[split_start:split_end]
 	trending_seventy.insert(5, 'trends', l1)
 	trending_seventy.to_csv('trending_cities.csv')
-	if S3Connection(os.environ['INTER']) >4:
-		S3Connection(os.environ['INTER'] = 1)
+	if inter > 4:
+		inter.truncate(0)
+		inter_read.write('1')
+		inter.close()
 	else:
-		S3Connection(os.environ['INTER'] += 1)
+		inter += 1
+		inter.truncate(0)
+		inter_read.write(str(inter))
