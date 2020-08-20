@@ -47,7 +47,7 @@ def find_current_trends():
 	Strending_seventy = trending_cities_df[split_start:split_end]
 	trending_seventy.insert(5, 'trends', l1)
 	trending_seventy.to_csv('trending_cities.csv')
-	if S3Connection(os.environ['INTER']) > 4:
-		S3Connection(os.environ['INTER']) = 1
+	if S3Connection(os.environ['INTER']) >4:
+		S3Connection(os.environ['INTER'] = 1)
 	else:
-		S3Connection(os.environ['INTER']) += 1
+		S3Connection(os.environ['INTER'] += 1)
