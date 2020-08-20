@@ -25,12 +25,12 @@ def find_current_trends():
     for trend in response:
         trending_cities.append([trend['name'], trend['country'], trend['woeid']])
 
-    print(trending_cities)
+    #print(trending_cities)
     trending_cities_df = pd.DataFrame(trending_cities, columns=['city','country','woeid'])
     city_coordinates = pd.read_csv('worldcities.csv')
     city_coordinates = city_coordinates[['city','country','lat','lng']]
     trending_cities_df = trending_cities_df.merge(city_coordinates,on=['country','city'])
-    print(trending_cities_df)
+    #print(trending_cities_df)
     woeids = trending_cities_df['woeid'].values
     trends_in_woeids = []
     url2 = 'https://api.twitter.com/1.1/trends/place.json'
@@ -39,14 +39,14 @@ def find_current_trends():
     for woeid in woeids:
         param = {'id':woeid}
         response = requests.get(url = url2, headers = {'authorization': 'Bearer ' + bearer}, params = param).json()
-        print('Acquiring trends for {}'.format(woeid))
+        #print('Acquiring trends for {}'.format(woeid))
         trends_in_woeids.append(response)	
         #print(response)
 
     print('All trends acquired')
     trending_seventy_in_woeids = trends_in_woeids
     l1 = []
-    print(len(trending_seventy_in_woeids))
+    #print(len(trending_seventy_in_woeids))
     print(trending_seventy_in_woeids)
 
     for i in trending_seventy_in_woeids:
@@ -55,10 +55,11 @@ def find_current_trends():
             l2.append(j['name'])
         l1.append(l2)
 
-    print(l1)
+    #print(l1)
     trending_seventy = trending_cities_df[split_start:split_end]
     trending_seventy.insert(5, 'trends', l1)
     trending_seventy.to_csv('trending_cities.csv')
+    print(trending_seventy)
 
     if inter > 4:
         with open('inter.txt', 'w') as f:
