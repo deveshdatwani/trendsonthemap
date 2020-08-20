@@ -52,7 +52,7 @@ def find_current_trends():
         trending_seventy_in_woeids = trends_in_woeids
         l1 = []
         #print(len(trending_seventy_in_woeids))
-        print(trending_seventy_in_woeids)
+        #print(trending_seventy_in_woeids)
 
         for i in trending_seventy_in_woeids:
             l2 = []
@@ -64,7 +64,7 @@ def find_current_trends():
         trending_seventy = trending_cities_df[split_start:split_end]
         trending_seventy.insert(5, 'trends', l1)
         trending_seventy.to_csv('trending_cities.csv')
-        print(trending_seventy[0])
+        #print(trending_seventy[0])
         #print(inter) 
 
         if inter > 4:
