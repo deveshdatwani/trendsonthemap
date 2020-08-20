@@ -2,16 +2,19 @@ import os
 #from boto.s3.connection import S3Connection
 import requests
 import pandas as pd
+from time import sleep
 
 def find_current_trends():
 
     try:
-
+    
         bearer_token = os.environ['BEARER_TOKEN']
         with open('inter.txt', 'r') as f:
             inter = f.read()
+            print(inter)
             f.close()
-        inter = int(inter)
+            inter = int(inter)
+        
         #print('The txt file contains the number {}'.format(inter))
         split_end = int(inter) * 70
         #print('split end = {}'.format(split_end))
@@ -61,8 +64,8 @@ def find_current_trends():
         trending_seventy = trending_cities_df[split_start:split_end]
         trending_seventy.insert(5, 'trends', l1)
         trending_seventy.to_csv('trending_cities.csv')
-        print(trending_seventy)
-        print(inter)
+        print(trending_seventy[0])
+        #print(inter) 
 
         if inter > 4:
             with open('inter.txt', 'w') as f:
@@ -72,10 +75,9 @@ def find_current_trends():
         else:
             inter += 1
             print(inter)
-        with open('inter.txt', 'w') as f:
-            f.truncate(0)
-            f.write('{}'.format(str(inter)))
-            f.close()
-    
+            with open('inter.txt', 'w') as f:
+                f.truncate(0)
+                f.write('{}'.format(str(inter)))
+                f.close()
     except:
-        Pass
+        pass
