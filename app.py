@@ -12,7 +12,7 @@ def main_page():
 	if request.method == 'GET':
 
 		#country_cordinates = pd.read_csv('trending_cities.csv')
-		#tooltip = 'See Trends'
+		tooltip = 'See Trends'
 		#lat = country_cordinates['lat']
 		#lon = country_cordinates['lng']
 		#city = country_cordinates['city']
