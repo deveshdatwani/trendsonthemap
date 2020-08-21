@@ -8,20 +8,28 @@ def find_current_trends():
     try:
     
         bearer_token = os.environ['BEARER_TOKEN']
-        with open('inter.txt', 'r') as f:
-            inter = f.read()
-            print(inter)
-            f.close()
-            inter = int(inter)
+        connector = mysql.connector.connect(user='be5852720363b4', password='936fcbd3', host='us-cdbr-east-02.cleardb.com', database='heroku_4ac3cade96b682b')
+        if connector.is_connected():    
+            cursor = connector.cursor(buffered=True)
+            query = 'SELECT * FROM iterator WHERE holder = "it_holder" '
+            cursor.execute(query)
+            response = cursor.fetchone()
+            i = response
+            response = response + 1
+            query = "UPDATE iterator SET iterator = {} WHERE holder = 'it_holder' ".format(response) 
+            cursor.execute(query)
+            cursor.close()
+            connector.close()
 
-        split_end = int(inter) * 70
-        split_start = int(split_end) - 70
-        url = 'https://api.twitter.com/1.1/trends/available.json'
-        bearer = os.environ['BEARER_TOKEN']
-        response = requests.get(url=url, headers = {'authorization': 'Bearer ' + bearer})
-        response = response.json()
-        trending_cities = []
-        print('Available trends acquired')
+        
+        split_end = i * 70
+        split_start = split_end - 70
+        #url = 'https://api.twitter.com/1.1/trends/available.json'
+        #bearer = os.environ['BEARER_TOKEN']
+        #response = requests.get(url=url, headers = {'authorization': 'Bearer ' + bearer})
+        #response = response.json()
+        ##trending_cities = []
+        #print('Available trends acquired')
 
         for trend in response:
             trending_cities.append([trend['name'], trend['country'], trend['woeid']])

@@ -32,7 +32,7 @@ def main_page():
 				
 				try:
 				
-					folium.Marker([float(city[4]), float(city[5])], popup = '<i>{}<i>'.format(city[6]), tooltip = tooltip).add_to(m)
+					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>{}<i>'.format(city[6]), tooltip = tooltip).add_to(m)
 				
 				except: pass
 		
