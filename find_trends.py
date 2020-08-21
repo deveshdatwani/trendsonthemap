@@ -2,78 +2,63 @@ import os
 import requests
 import pandas as pd
 from time import sleep
+import mysql.connector
 
 def find_current_trends():
 
-    try:
+    bearer = os.environ['BEARER_TOKEN']
+    print('trying to connect to server')
+    connector = mysql.connector.connect(user='be5852720363b4', password='936fcbd3', host='us-cdbr-east-02.cleardb.com', database='heroku_4ac3cade96b682b')
     
-        bearer_token = os.environ['BEARER_TOKEN']
-        connector = mysql.connector.connect(user='be5852720363b4', password='936fcbd3', host='us-cdbr-east-02.cleardb.com', database='heroku_4ac3cade96b682b')
-        if connector.is_connected():    
-            cursor = connector.cursor(buffered=True)
-            query = 'SELECT * FROM iterator WHERE holder = "it_holder" '
-            cursor.execute(query)
-            response = cursor.fetchone()
-            i = response
-            response = response + 1
-            query = "UPDATE iterator SET iterator = {} WHERE holder = 'it_holder' ".format(response) 
-            cursor.execute(query)
-            cursor.close()
-            connector.close()
+    if connector.is_connected():    
+        cursor = connector.cursor(buffered=True)
+        query = 'SELECT * FROM iterator WHERE holder = "it_holder" '
+        cursor.execute(query)
+        response = cursor.fetchone()
+        i = response[1]
+        response = response[1] + 1
+        print('This is update iterator {}'.format(response))
+        second_query = "UPDATE iterator SET it = {} WHERE holder = 'it_holder' ".format(response)
+        cursor.execute(second_query)
+        connector.commit()
+        third_query = 'SELECT * FROM trendsincities'
+        third_response = cursor.execute(third_query)
+        response = cursor.fetchall()
+        print('iterator token accessed and updated. Fetched trendingcities')
+        print(i)
 
-        
-        split_end = i * 70
-        split_start = split_end - 70
-        #url = 'https://api.twitter.com/1.1/trends/available.json'
-        #bearer = os.environ['BEARER_TOKEN']
-        #response = requests.get(url=url, headers = {'authorization': 'Bearer ' + bearer})
-        #response = response.json()
-        ##trending_cities = []
-        #print('Available trends acquired')
+    split_end = i * 5
+    split_start = split_end - 5
 
-        for trend in response:
-            trending_cities.append([trend['name'], trend['country'], trend['woeid']])
+    trends = [x[6] for x in response]
+    woeids = [x[3] for x in response] 
+    #print(woeids)
+    woeids = woeids[split_start:split_end]
+    trends_in_woeids = []
+    url = 'https://api.twitter.com/1.1/trends/place.json'
+    l2 = []
 
-
-        trending_cities_df = pd.DataFrame(trending_cities, columns=['city','country','woeid'])
-        city_coordinates = pd.read_csv('worldcities.csv')
-        city_coordinates = city_coordinates[['city','country','lat','lng']]
-        trending_cities_df = trending_cities_df.merge(city_coordinates,on=['country','city'])
-        woeids = trending_cities_df['woeid'].values
-        trends_in_woeids = []
-        url2 = 'https://api.twitter.com/1.1/trends/place.json'
-        woeids = woeids[split_start:split_end]
-
-        for woeid in woeids:
-            param = {'id':woeid}
-            response = requests.get(url = url2, headers = {'authorization': 'Bearer ' + bearer}, params = param).json()
-            trends_in_woeids.append(response)
-
-        print('All trends acquired')
-        trending_seventy_in_woeids = trends_in_woeids
+    for woeid in woeids:
+        param = {'id' : woeid}
+        response = requests.get(url = url, headers = {'authorization': 'Bearer ' + bearer}, params = param).json()
         l1 = []
+        #print(response)
+        for i in response[0]['trends']:
+            l1.append(i['name'])
+        l2.append(l1)
 
-        for i in trending_seventy_in_woeids:
-            l2 = []
-            for j in i[0]['trends']:
-                l2.append(j['name'])
-            l1.append(l2)
+    print('All trends acquired')
 
-        trending_seventy = trending_cities_df[split_start:split_end]
-        trending_seventy.insert(5, 'trends', l1)
-        trending_seventy.to_csv('trending_cities.csv')
+    trends[split_start:split_end] = l2
+    print(trends)
+    connector = mysql.connector.connect(user='be5852720363b4', password='936fcbd3', host='us-cdbr-east-02.cleardb.com', database='heroku_4ac3cade96b682b')
+    cursor = connector.cursor(buffered=True)
+    values = ((item,) for item in trends)
+    fourth_query = 'UPDATE trendsincities SET trends = {}'.format(values)
+    cursor.execute(fourth_query)
+    connector.commit()
+    print('Done')
+    cursor.close()
+    connector.close()
 
-        if inter > 4:
-            with open('inter.txt', 'w') as f:
-                f.truncate(0)
-                f.write('{}'.format('1'))
-                f.close()
-        else:
-            inter += 1
-            print(inter)
-            with open('inter.txt', 'w') as f:
-                f.truncate(0)
-                f.write('{}'.format(str(inter)))
-                f.close()
-    except:
-        pass
+find_current_trends()

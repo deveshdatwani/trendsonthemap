@@ -23,10 +23,13 @@ def main_page():
 		m = folium.Map(tiles='Stamen Terrain',  zoom_start=3, location=[20.76, 79])
 
 		if connector.is_connected():	
-			cursor = connector.cursor(buffered=True)
+			cursor = connector.cursor()
 			query = 'SELECT * FROM trendsincities'
 			cursor.execute(query)
 			response = cursor.fetchall()
+			print(response)
+			cursor.close()
+			connector.close()
 
 			for i, city in enumerate(response):
 				
@@ -34,7 +37,7 @@ def main_page():
 				
 					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>{}<i>'.format(city[6]), tooltip = tooltip).add_to(m)
 				
-				except: pass
+				except Exception as e: print(e)
 		
 			
 
