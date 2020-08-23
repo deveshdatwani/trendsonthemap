@@ -56,6 +56,8 @@ def find_trends():
         for i in response[0]['trends']:
             l1.append(i['name'])
         l2.append(l1)
+    except:
+        pass
 
     print('All trends acquired')
 
