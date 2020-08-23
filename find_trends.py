@@ -7,7 +7,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=15)
+@sched.scheduled_job('interval', minutes=20)
 def find_trends():
     
     bearer = os.environ['BEARER_TOKEN']
@@ -53,11 +53,12 @@ def find_trends():
         l1 = []
         
     try:
+
         for i in response[0]['trends']:
             l1.append(i['name'])
         l2.append(l1)
-    except:
-        pass
+
+    except: pass
 
     print('All trends acquired')
 
@@ -74,8 +75,8 @@ def find_trends():
 
     for i, trend in enumerate(trends):
         cursor.execute('UPDATE trendsincities SET trends = %s WHERE woeid = %s', (trend, woeids_copy[i]))
-
         connector.commit()
+        
     print('Done')
     cursor.close()
     connector.close()

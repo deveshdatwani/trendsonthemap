@@ -21,18 +21,11 @@ def main_page():
 			query = 'SELECT * FROM trendsincities'
 			cursor.execute(query)
 			response = cursor.fetchall()
-			print(response)
 			cursor.close()
 			connector.close()
 
 			for i, city in enumerate(response):
+								
+				folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>{}<i>'.format(city[6]), tooltip = tooltip).add_to(m)
 				
-				try:
-				
-					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>{}<i>'.format(city[6]), tooltip = tooltip).add_to(m)
-				
-				except Exception as e: print(e)
-		
-			
-
 	return m._repr_html_()
