@@ -52,10 +52,10 @@ def find_trends():
         response = requests.get(url = url, headers = {'authorization': 'Bearer ' + bearer}, params = param).json()
         l1 = []
         
-        try:
-            for i in response[0]['trends']:
-                l1.append(i['name'])
-            l2.append(l1)
+    try:
+        for i in response[0]['trends']:
+            l1.append(i['name'])
+        l2.append(l1)
 
     print('All trends acquired')
 
