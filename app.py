@@ -26,6 +26,6 @@ def main_page():
 
 			for i, city in enumerate(response):
 								
-				folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>{}<i>'.format(city[6]), tooltip = tooltip).add_to(m)
+				folium.Marker([round(city[4],2), round(city[5],2)], popup = '<meta charset="UTF-8"><i>{}<i>'.format(city[6]), tooltip = tooltip).add_to(m)
 				
 	return m._repr_html_()
