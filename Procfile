@@ -1,2 +1,2 @@
 web gunicorn app:app 
-clock: python create_world_map_trends.py
+clock: python find_trends.py

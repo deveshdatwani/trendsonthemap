@@ -50,13 +50,15 @@ def find_current_trends():
     print('All trends acquired')
 
     trends[split_start:split_end] = l2
-    print(trends)
+    #print(trends)
     connector = mysql.connector.connect(user='be5852720363b4', password='936fcbd3', host='us-cdbr-east-02.cleardb.com', database='heroku_4ac3cade96b682b')
     cursor = connector.cursor(buffered=True)
-    values = ((item,) for item in trends)
-    fourth_query = 'UPDATE trendsincities SET trends = {}'.format(values)
-    cursor.execute(fourth_query)
+    values = [str(item) for item in trends]
+    #values = ','.join(values)
+    #fourth_query = 'UPDATE trendsincities SET trends= ? '.
+    cursor.execute('UPDATE trendsincities SET trends = "{}"'.format(values))
     connector.commit()
+    print(cursor._last_executed)
     print('Done')
     cursor.close()
     connector.close()
