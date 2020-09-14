@@ -16,7 +16,7 @@
         }
         main .map{
             flex: 10;
-            background-image: {{ url_for('static', filename='images/background.jpg') }};
+            background-image:url({{'static/img/background.jpg'}});
             background-image: no-repeat;
             background-position: center;
             background-size: cover; 
@@ -29,10 +29,10 @@
             text-align: center;
         }
         iframe{
-            opacity: 0.9;
-            height: 80%;
-            width: 50%;
-            margin-left: 25%;
+            opacity: 0.85;
+            height: 60vh;
+            width: 80%;
+            margin-left: 10%;
             margin-top: 2%;
         }
     </style>
@@ -41,7 +41,7 @@
             <h1 style="font-family: 'Dancing Script', cursive; ";>Trends On The Map</h1>
         </div>
         <div class="map">
-            <iframe srcdoc="{{map}}" frameborder="0" style="height: min-content;"></iframe>
+            <iframe srcdoc="{{map}}" frameborder="0" height="80%" widht="80%"></iframe>
         </div>
         <div class="footer">
             <h6 style="font-family: 'Dancing Script', cursive;">By Devesh Datwani</h6>

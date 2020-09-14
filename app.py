@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import pandas as pd
 import mysql.connector
 import folium
@@ -29,7 +29,7 @@ def main_page():
 
 				try:
 
-					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>{}<i>'.format(city[6]), tooltip = tooltip).add_to(m)
+					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>{}<i>'.format(city[6][:10]), tooltip = tooltip).add_to(m)
 
 				except Exception as e: print(e)
 
