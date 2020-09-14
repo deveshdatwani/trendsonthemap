@@ -1,20 +1,51 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>Trends</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <body>
-	<p>
-	Trends on the map
-	</p>
-
-	<div>
-	<iframe srcdoc="{{map}}" height="800px" width="800px"></iframe>
-	</div>
+    <style>
+    
+        main{
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        main .map{
+            flex: 10;
+            background-image: url(images/background.jpg);
+            background-image: no-repeat;
+            background-position: center;
+            background-size: cover; 
+        }
+        main .head{
+            flex: 1;
+            text-align: center;
+        }
+        main .footer{
+            text-align: center;
+        }
+        iframe{
+            opacity: 0.9;
+            height: 80%;
+            width: 50%;
+            margin-left: 25%;
+            margin-top: 2%;
+        }
+    </style>
+    <main>
+        <div class="head">
+            <h1 style="font-family: 'Dancing Script', cursive; ";>Trends On The Map</h1>
+        </div>
+        <div class="map">
+            <iframe srcdoc="{{map}}" frameborder="0" style="border: solid;"></iframe>
+        </div>
+        <div class="footer">
+            <h6>By Devesh Datwani</h6>
+        </div>
+    </main>
 </body>
-
 </html>
