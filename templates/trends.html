@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title style="font-family: 'Dancing Script', cursive;">Trends On The Map</title>
 </head>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <body>
@@ -16,7 +16,7 @@
         }
         main .map{
             flex: 10;
-            background-image: url_for('static', filename='background.jpg');
+            background-image: url_for('static', filename='images/background.jpg');
             background-image: no-repeat;
             background-position: center;
             background-size: cover; 
@@ -41,10 +41,10 @@
             <h1 style="font-family: 'Dancing Script', cursive; ";>Trends On The Map</h1>
         </div>
         <div class="map">
-            <iframe srcdoc="{{map}}" frameborder="0" style="border: solid;"></iframe>
+            <iframe srcdoc="{{map}}" frameborder="0" style="height: min-content;"></iframe>
         </div>
         <div class="footer">
-            <h6>By Devesh Datwani</h6>
+            <h6 style="font-family: 'Dancing Script', cursive;">By Devesh Datwani</h6>
         </div>
     </main>
 </body>
