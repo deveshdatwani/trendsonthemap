@@ -15,7 +15,7 @@ def main_page():
 		tooltip = 'See Trends'
 
 		connector = mysql.connector.connect(user='be5852720363b4', password='936fcbd3', host='us-cdbr-east-02.cleardb.com', database='heroku_4ac3cade96b682b')
-		m = folium.Map(tiles='Stamen Terrain',  zoom_start=3, location=[20.76, 79])
+		m = folium.Map(tiles='Stamen Terrain', min_zoom=3, zoom_start=3, location=[20.76, 79])
 
 		if connector.is_connected():
 			cursor = connector.cursor()
