@@ -29,7 +29,7 @@ def main_page():
 
 				try:
 
-					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>{}<i>'.format('<br>'.join(city[6].split(' ')[:10])), tooltip = tooltip).add_to(m)
+					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i><span style="font-weight:900; margin-left:30%;">{}</span><br><br>{}<i>'.format(city[1], '<br>'.join(city[6].split(' ')[:10])), tooltip = tooltip).add_to(m)
 
 				except Exception as e: print(e)
 
