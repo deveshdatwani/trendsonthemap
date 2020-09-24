@@ -3,9 +3,15 @@ import pandas as pd
 import mysql.connector
 import folium
 from jinja2 import PackageLoader, select_autoescape, Environment, Template
+from apscheduler.schedulers.background import BackgroundScheduler
+from find_trends import find_trends
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(find_trends, 'interval', minutes=20)
+sched.start()
 
 @app.route('/', methods=('GET','POST'))
 def main_page():
@@ -14,7 +20,7 @@ def main_page():
 
 		tooltip = 'See Trends'
 
-		connector = mysql.connector.connect(user='be5852720363b4', password='936fcbd3', host='us-cdbr-east-02.cleardb.com', database='heroku_4ac3cade96b682b')
+		connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
 		m = folium.Map(tiles='Stamen Terrain', min_zoom=3, zoom_start=3, location=[20.76, 79])
 
 		if connector.is_connected():
@@ -29,7 +35,7 @@ def main_page():
 
 				try:
 
-					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i><span style="font-weight:900; margin-left:30%;">{}</span><br><br>{}<i>'.format(city[1], '<br>'.join(city[6].split(' ')[:10])), tooltip = tooltip).add_to(m)
+					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>><span style="font-weight:900; margin-left:30%;">{}</span><br><br>{}<i>'.format(city[1], '<br>'.join(city[6].split('-')[:10])), tooltip = tooltip).add_to(m)
 
 				except Exception as e: print(e)
 
