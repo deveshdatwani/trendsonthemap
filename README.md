@@ -13,7 +13,7 @@ Social media has seen exponential growth in the number of its users for about a 
 
 In Twitter, a word, phrase or a hashtag mentioned by a large number of users in a short period of time is said to be "trending topic" or simply "trending" at that point of time. Twitter provides with a funtionality to retrieve the trending topics based on locations through its API.
 
-![]()
+![](https://github.com/deveshdatwani/trendsonthemap/blob/master/twitter-trends.PNG)
 
 A GET request made with authentic API secret key credentials returns JSON file which contains trending topics and in some cases the number of tweets.
 
