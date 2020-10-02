@@ -7,7 +7,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 def find_trends():
 
-    bearer = 'AAAAAAAAAAAAAAAAAAAAAFpzGwEAAAAA5S13Nnr0miSgTbDczld3rhUUbgY%3DhP5gWNZjfBjIx0x9TfTSOFeEhs3wm4KoINLUr9MaoKntDEPyHw'
+    bearer = 'Insert your Twitter API bearer key here'
     connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
     print('connected to database')
 
