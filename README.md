@@ -11,7 +11,7 @@ https://www.trendsonthemap.com
 
 Social media has seen exponential growth in the number of its users for about a decade now. More and more people turn to social media to voice their opnions or share parts of their life. Twitter has become a medium on which ideas, opinions and beliefs are shared.
 
-In Twitter, a word, prhase or a hashtag mentioned by a large number of users in a short period of time is said to be "trending topic" or simply "trending" at that point of time. Twitter provides with a funtionality to retrieve the trending topics based on locations through its API.
+In Twitter, a word, phrase or a hashtag mentioned by a large number of users in a short period of time is said to be "trending topic" or simply "trending" at that point of time. Twitter provides with a funtionality to retrieve the trending topics based on locations through its API.
 
 ![]()
 
@@ -45,7 +45,7 @@ You will also need to set up a mysql server on your machine. Once that is done, 
 mysql -u username -p trendsonthemap < file.sql
 ```
 
-rendsonthemap uses data from this database to access trends. Trends are updated every 90 minutes (more or less).
+trendsonthemap uses data from this database to access trends. Trends are updated every 90 minutes (more or less).
 
 Then move into the folder with the command
 
@@ -94,7 +94,7 @@ connector = mysql.connector.connect(user='devesh', password='trendsonthemap', ho
 			connector.close()
 ```
 
--- folium creating a map and marking cities from the latitude and longitude values fromt database as well as the trends.
+-- folium creating a map and marking cities from the latitude and longitude values from database as well as the trends.
 
 ```
 for i, city in enumerate(response):
