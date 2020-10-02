@@ -5,4 +5,6 @@ https://www.trendsonthemap.com
 
 ### Webpage Snippet
 
-![snippet]['https://github.com/deveshdatwani/trendsonthemap/blob/master/trends.PNG']
+![](https://github.com/deveshdatwani/trendsonthemap/blob/master/trends.PNG) 
+
+ 
