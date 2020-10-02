@@ -53,4 +53,42 @@ Then move into the folder with the command
 cd trendsonthemap
 ```
 
+After you have installed all the dependencies, you can launch the flask app with the "flask" command. Before that you need to tell Flask where to look for the app. Do this through the export command
 
+```
+export FLASK_APP=app.py
+```
+
+Then run flaskk app with the command 
+
+```
+flask run / python3 -m flask run
+```
+
+You will see an output similar to this:
+
+![]()
+
+You can then visit the page at http://127.0.0.1:5000 to check out your webapp.
+
+### Project Walkthrough
+
+The two modules which run the webapp are app.py and find_trends.py. Whenever a call is made to '/' page of the server, the main_page function decorated by flask's app first connects to the database to fetch trends, latitude and longitude of every city. It then creates markers on the folium map.
+
+
+Folium binds this into an html template which is then embedded in an iframe of another jinja template.
+
+
+-- mysql-connector connecting to the database.
+
+```
+flask run / python3 -m flask run
+```
+
+-- folium creating a map and marking cities from the latitude and longitude values fromt database as well as the trends.
+
+```
+flask run / python3 -m flask run
+```
+
+find_trends.py fetches city based trends from Twitter through its API and stores it in the database. Since Twitter allows only 70 requests a minute. An iterator has been set up in the database to fetch city based trends in a batch of 15 every 5 minutes. This is done using the apschedular tool.
