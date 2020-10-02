@@ -67,7 +67,7 @@ flask run / python3 -m flask run
 
 You will see an output similar to this:
 
-![]()
+![](https://github.com/deveshdatwani/trendsonthemap/blob/master/snippet3.png.png)
 
 You can then visit the page at http://127.0.0.1:5000 to check out your webapp.
 
