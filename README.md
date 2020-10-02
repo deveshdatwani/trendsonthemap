@@ -19,15 +19,20 @@ A GET request made with authentic API secret key credentials returns JSON file w
 
 ### Technologies Used
 Python
+
 HTML and CSS
+
 Folium
+
 Jinja2
+
 apschedular
+
 MYSQL
 
 
 ### Installation and Launch (Linux)
 
 From the Terminal, clone the github repository with the command
-''' git clone https://github.com/deveshdatwani/trendsonthemap '''
+'''git clone https://github.com/deveshdatwani/trendsonthemap'''
 
