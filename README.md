@@ -36,8 +36,21 @@ MYSQL
 From the Terminal, clone the github repository with the command
 
 ```
-
 git clone https://github.com/deveshdatwani/trendsonthemap
+```
+
+You will also need to set up a mysql server on your machine. Once that is done, import the trendsonthemap schema from the data directory into your msql-server. Do so by using the following command 
 
 ```
+mysql -u username -p trendsonthemap < file.sql
+```
+
+rendsonthemap uses data from this database to access trends. Trends are updated every 90 minutes (more or less).
+
+Then move into the folder with the command
+
+```
+cd trendsonthemap
+```
+
 
