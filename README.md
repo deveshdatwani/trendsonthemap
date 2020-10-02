@@ -5,4 +5,4 @@ https://www.trendsonthemap.com
 
 ### Webpage Snippet
 
-![snippet] (trends.PNG)
+![snippet] (/trends.PNG)
