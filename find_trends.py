@@ -18,7 +18,7 @@ def find_trends():
         response = cursor.fetchone()
     i = response[1]
 
-    if i > 4:
+    if i > 19:
         response = 1
     else:
         response = response[1] + 1
@@ -32,8 +32,8 @@ def find_trends():
     response = cursor.fetchall()
     print('iterator token accessed and updated. Fetched trendingcities')
 
-    split_end = i * 70
-    split_start = split_end - 70
+    split_end = i * 20
+    split_start = split_end - 20
     print('start and end {} - {}'.format(split_start, split_end))
 
     trends = [x[6] for x in response]
@@ -43,38 +43,41 @@ def find_trends():
     woeids = list(woeids[split_start:split_end])
     trends = list(trends[split_start:split_end])
     trends_in_woeids = []
-
     url = 'https://api.twitter.com/1.1/trends/place.json'
     l2 = []
     response = []
 
-    for woeid in woeids:
-        param = {'id' : woeid}
-        r = requests.get(url = url, headers = {'authorization': 'Bearer ' + bearer}, params = param).json()
-        response.append(r)
-        print('acquiring trends for {}'.format(woeid))
+    if len(woeids) > 0:
 
-    for i in response:
-        l1 = []
-        for j in i[0]['trends']:
-            l1.append(j['name'])
-        l2.append('-'.join(l1))
+        for woeid in woeids:
+            param = {'id' : woeid}
+            r = requests.get(url = url, headers = {'authorization': 'Bearer ' + bearer}, params = param).json()
+            response.append(r)
+            print('acquiring trends for {}'.format(woeid))
 
-    trends = l2
-    print('All trends acquired')
-    trends = tuple(trends)
-    cursor.close()
-    connector.close()
-    connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
-    cursor = connector.cursor(buffered=True)
+        for i in response:
+            l1 = []
+            for j in i[0]['trends']:
+                l1.append(j['name'])
+            l2.append('-'.join(l1))
 
-    for i, trend in enumerate(trends):
-        cursor.execute('UPDATE trendsincities SET trends = %s WHERE woeid = %s', (trend, woeids[i]))
-        connector.commit()
+        trends = l2
+        print('All trends acquired')
+        trends = tuple(trends)
+        cursor.close()
+        connector.close()
+        connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
+        cursor = connector.cursor(buffered=True)
 
-    print('70 trends inserted')
-    cursor.close()
-    connector.close()
+        for i, trend in enumerate(trends):
+            cursor.execute('UPDATE trendsincities SET trends = %s WHERE woeid = %s', (trend, woeids[i]))
+            connector.commit()
+
+        print('70 trends inserted')
+        cursor.close()
+        connector.close()
+
+    else:
+        pass
 
     return None
-

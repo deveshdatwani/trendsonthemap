@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(find_trends, 'interval', minutes=20)
+sched.add_job(find_trends, 'interval', minutes=5)
 sched.start()
 
 @app.route('/', methods=('GET','POST'))
