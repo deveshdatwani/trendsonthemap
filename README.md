@@ -35,9 +35,9 @@ MYSQL
 
 From the Terminal, clone the github repository with the command
 
-'''
+```
 
 git clone https://github.com/deveshdatwani/trendsonthemap
 
-'''
+```
 
