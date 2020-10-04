@@ -1,4 +1,4 @@
-## Trends On The Map
+# Trends On The Map
 
 ### The Webpage
 https://www.trendsonthemap.com
