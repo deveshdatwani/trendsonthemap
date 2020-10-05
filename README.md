@@ -3,11 +3,11 @@
 ### The Webpage
 https://www.trendsonthemap.com
 
-### Webpage Snippet
+## Webpage Snippet
 
 ![](https://github.com/deveshdatwani/trendsonthemap/blob/master/trends.PNG) 
 
-### Introduction
+## Introduction
 
 Social media has seen exponential growth in the number of its users for about a decade now. More and more people turn to social media to voice their opnions or share parts of their life. Twitter has become a medium on which ideas, opinions and beliefs are shared.
 
@@ -19,7 +19,7 @@ Trendsonthemap aims to visualize trends on a map allowing users to catch up with
 
 A GET request made with authentic API secret key credentials returns JSON file which contains trending topics and in some cases the number of tweets.
 
-### Technologies Used
+## Technologies Used
 Python
 
 HTML and CSS
@@ -33,7 +33,7 @@ apschedular
 MYSQL
 
 
-### Installation and Launch (Linux)
+## Installation and Launch (Linux)
 
 From the Terminal, clone the github repository with the command
 
@@ -73,7 +73,7 @@ You will see an output similar to this:
 
 You can then visit the page at http://127.0.0.1:5000 to check out your webapp.
 
-### Project Walkthrough
+## Project Walkthrough
 
 The two modules which run the webapp are app.py and find_trends.py. Whenever a call is made to '/' page of the server, the main_page function decorated by flask's app first connects to the database to fetch trends, latitude and longitude of every city. It then creates markers on the folium map.
 
