@@ -20,18 +20,13 @@ Trendsonthemap aims to visualize trends on a map allowing users to catch up with
 A GET request made with authentic API secret key credentials returns JSON file which contains trending topics and in some cases the number of tweets.
 
 ## Technologies Used
-Python
 
-HTML and CSS
-
-Folium
-
-Jinja2
-
-apschedular
-
-MYSQL
-
+*Python
+*HTML and CSS
+*Folium
+*Jinja2
+*apschedular
+*MYSQL
 
 ## Installation and Launch (Linux)
 
