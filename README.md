@@ -21,12 +21,12 @@ A GET request made with authentic API secret key credentials returns JSON file w
 
 ## Technologies Used
 
-*Python
-*HTML and CSS
-*Folium
-*Jinja2
-*apschedular
-*MYSQL
+* Python
+* HTML and CSS
+* Folium
+* Jinja2
+* apschedular
+* MYSQL
 
 ## Installation and Launch (Linux)
 
