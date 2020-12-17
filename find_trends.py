@@ -6,8 +6,8 @@ import mysql.connector
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 def find_trends():
-
-    bearer = 'AAAAAAAAAAAAAAAAAAAAAFpzGwEAAAAA5S13Nnr0miSgTbDczld3rhUUbgY%3DhP5gWNZjfBjIx0x9TfTSOFeEhs3wm4KoINLUr9MaoKntDEPyHw'
+    bearer = 'AAAAAAAAAAAAAAAAAAAAAHuKIwEAAAAAQ5TCFup6cTU5Fh4GkEJxiOEGwmM%3DZM0q1OZ9beUM2GJS6WInCn6GzDgpwoiPnTz7eDEp914OOOXedI'
+    #bearer = 'AAAAAAAAAAAAAAAAAAAAAFpzGwEAAAAA5S13Nnr0miSgTbDczld3rhUUbgY%3DhP5gWNZjfBjIx0x9TfTSOFeEhs3wm4KoINLUr9MaoKntDEPyHw'
     connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
     print('connected to database')
 
@@ -57,6 +57,7 @@ def find_trends():
 
         for i in response:
             l1 = []
+            print(i)
             for j in i[0]['trends']:
                 l1.append(j['name'])
             l2.append('-'.join(l1))
@@ -71,9 +72,10 @@ def find_trends():
 
         for i, trend in enumerate(trends):
             cursor.execute('UPDATE trendsincities SET trends = %s WHERE woeid = %s', (trend, woeids[i]))
+            print(trend)
             connector.commit()
 
-        print('70 trends inserted')
+        print('20 trends inserted')
         cursor.close()
         connector.close()
 
