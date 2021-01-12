@@ -15,35 +15,31 @@ sched.start()
 
 @app.route('/', methods=('GET','POST'))
 def main_page():
+    if request.method == 'GET':
+        tooltip = 'See Trends'
+        connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
+        m = folium.Map(tiles='Stamen Terrain', min_zoom=3, zoom_start=3, location=[20.76, 79])
+        folium.TileLayer(opacity=1).add_to(m)
 
-	if request.method == 'GET':
+    if connector.is_connected():
+        cursor = connector.cursor()
+        query = 'SELECT * FROM trendsincities'
+        cursor.execute(query)
+        response = cursor.fetchall()
+        cursor.close()
+        connector.close()
 
-		tooltip = 'See Trends'
+    for i, city in enumerate(response):
+        try:            
+            folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>><span style="font-weight:900; margin-left:30%;">{}</span><br><br>{}<i>'.format(city[1], '<br>'.join(city[6].split('-')[:10])), tooltip = tooltip).add_to(m)
 
-		connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
-		m = folium.Map(tiles='Stamen Terrain', min_zoom=3, zoom_start=3, location=[20.76, 79])
+        except Exception as e: print(e)
 
-		if connector.is_connected():
-			cursor = connector.cursor()
-			query = 'SELECT * FROM trendsincities'
-			cursor.execute(query)
-			response = cursor.fetchall()
-			cursor.close()
-			connector.close()
+    final_display = m._repr_html_()
 
-			for i, city in enumerate(response):
+    env = Environment(loader=PackageLoader('app', 'templates'), autoescape=select_autoescape(['html', 'xml']))
+    template = env.get_template('trends.html')
+    map = template.render(map=final_display)
 
-				try:
-
-					folium.Marker([round(city[4],2), round(city[5],2)], popup = '<i>><span style="font-weight:900; margin-left:30%;">{}</span><br><br>{}<i>'.format(city[1], '<br>'.join(city[6].split('-')[:10])), tooltip = tooltip).add_to(m)
-
-				except Exception as e: print(e)
-
-		final_display = m._repr_html_()
-
-		env = Environment( loader=PackageLoader('app', 'templates'), autoescape=select_autoescape(['html', 'xml']) )
-		template = env.get_template('trends.html')
-		map = template.render(map=final_display)
-
-	return map
+    return map
 
