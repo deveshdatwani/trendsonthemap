@@ -7,7 +7,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 def find_trends():
     bearer = 'AAAAAAAAAAAAAAAAAAAAAHuKIwEAAAAAQ5TCFup6cTU5Fh4GkEJxiOEGwmM%3DZM0q1OZ9beUM2GJS6WInCn6GzDgpwoiPnTz7eDEp914OOOXedI'
-    #bearer = 'AAAAAAAAAAAAAAAAAAAAAFpzGwEAAAAA5S13Nnr0miSgTbDczld3rhUUbgY%3DhP5gWNZjfBjIx0x9TfTSOFeEhs3wm4KoINLUr9MaoKntDEPyHw'
+
     connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
     print('connected to database')
 
