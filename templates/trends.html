@@ -8,7 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <body>
     <style>
-    
+        html{
+	    margin: 0;
+	    padding: 0;
+	    border-style: border-box;
+	}
         main{
             display: flex;
             flex-direction: column;
@@ -19,21 +23,30 @@
             background-image:url({{'static/img/background.jpg'}});
             background-image: no-repeat;
             background-position: center;
-            background-size: cover; 
-        }
+            background-size: cover;
+	    width: 100%;
+	    margin: auto;
+	    text-align: center;
+	    vertical-align: middle;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	}
         main .head{
             flex: 1;
             text-align: center;
+	    margin: 0;
         }
         main .footer{
             text-align: center;
-        }
+            margin: 0;
+	}
         iframe{
-            opacity: 1.0;
-            height: 60vh;
-            width: 80%;
-            margin-left: 10%;
-            margin-top: 5%;
+            opacity: 0.85;
+            height: 100%;
+            width: 95;
+            margin: auto;
+	    vertical-align:center;
         }
     </style>
     <main>
@@ -41,7 +54,7 @@
             <h1 style="font-family: 'Dancing Script', cursive; ";>Trends On The Map</h1>
         </div>
         <div class="map">
-            <iframe srcdoc="{{map}}" frameborder="0" height="80%" widht="80%"></iframe>
+            <iframe srcdoc="{{map}}" frameborder="0" height="80%" width="100%"></iframe>
         </div>
         <div class="footer">
             <h4 style="font-family: 'Dancing Script', cursive;">By Devesh Datwani</h4>
