@@ -31,7 +31,7 @@ A GET request made with authentic API secret key credentials returns JSON file w
 
 ## Installation and Launch (Linux)
 
-From the Terminal, clone the github repository with the command
+clone this repository with the command
 
 ```
 git clone https://github.com/deveshdatwani/trendsonthemap
