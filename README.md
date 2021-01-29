@@ -1,7 +1,7 @@
 # Trends On The Map
 
 ### The Webpage
-https://www.trendsonthemap.com
+http://www.trendsonthemap.com
 
 ## Webpage Snippet
 
@@ -9,11 +9,11 @@ https://www.trendsonthemap.com
 
 ## Introduction
 
-Lately, twitter has become the predominant medium to voice opinions, express dissent or share beliefs.
+Twitter has become the predominant medium to voice opinions, express dissent or share beliefs. So much so that it has become the go-to place to stay updated about world happenings.
 
-On Twitter, a word, phrase or a hashtag mentioned by a large number of users in a short period of time is said to be "trending topic" or simply "trending" at that point of time. Twitter provides with a funtionality to retrieve the trending topics based on locations through its API.
+On Twitter, a word, phrase or a hashtag mentioned by a large number of users in a short period of time is said to be "trending topic" or simply "trending". Twitter provides with an API to retrieve trending topics based on geographic locations.
 
-Trendsonthemap aims to visualize trends on a map allowing users to catch up with world trends without hastles.
+Trendsonthemap aims to visualize these trends on a map allowing users to catch up with world.
 
 ![](https://github.com/deveshdatwani/trendsonthemap/blob/master/twitter-trends.PNG)
 
@@ -22,6 +22,7 @@ A GET request made with authentic API secret key credentials returns JSON file w
 ## Technologies Used
 
 * Python
+* Flask
 * HTML and CSS
 * Folium
 * Jinja2
@@ -36,13 +37,13 @@ From the Terminal, clone the github repository with the command
 git clone https://github.com/deveshdatwani/trendsonthemap
 ```
 
-You will also need to set up a mysql server on your machine. Once that is done, import the trendsonthemap schema from the data directory into your msql-server. Do so by using the following command 
+You will also need to set up a mysql server on your machine. Once that is done, import the trendsonthemap schema from the data directory into your msql-server. Do so by entering the following command on your terminal
 
 ```
 mysql -u username -p trendsonthemap < file.sql
 ```
 
-trendsonthemap uses data from this database to access trends. Trends are updated every 90 minutes (more or less).
+trendsonthemap fetches data stored in this database to access trends which are updated every 90 minutes (more or less).
 
 Then move into the folder with the command
 
@@ -50,7 +51,7 @@ Then move into the folder with the command
 cd trendsonthemap
 ```
 
-After you have installed all the dependencies, you can launch the flask app with the "flask" command. Before that you need to tell Flask where to look for the app. Do this through the export command
+Once you have installed all the dependencies, you can launch the flask app with the "flask" command. Before that, you will need to tell Flask where to look for the flask application. Do this through the export command
 
 ```
 export FLASK_APP=app.py
@@ -70,10 +71,10 @@ You can then visit the page at http://127.0.0.1:5000 to check out your webapp.
 
 ## Project Walkthrough
 
-The two modules which run the webapp are app.py and find_trends.py. Whenever a call is made to '/' page of the server, the main_page function decorated by flask's app first connects to the database to fetch trends, latitude and longitude of every city. It then creates markers on the folium map.
+The two modules which power the webapp are app.py and find_trends.py. Whenever a call is made to '/' page of the server, the main_page function decorated by flask app connects to the database to fetch trends, latitude and longitude for every city. It then creates markers on the folium map with the retrieved lat and long.
 
 
-Folium binds this into an html template which is then embedded in an iframe of another jinja template.
+Folium binds this into an html template which is then embedded in an iframe of the webiste's core jinja template.
 
 
 -- mysql-connector connecting to the database.
