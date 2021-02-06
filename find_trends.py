@@ -6,7 +6,7 @@ import mysql.connector
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 def find_trends():
-    bearer = 'AAAAAAAAAAAAAAAAAAAAAHuKIwEAAAAAQ5TCFup6cTU5Fh4GkEJxiOEGwmM%3DZM0q1OZ9beUM2GJS6WInCn6GzDgpwoiPnTz7eDEp914OOOXedI'
+    bearer = 'insert your bearer token from your Twitter API app'
 
     connector = mysql.connector.connect(user='devesh', password='trendsonthemap', host='localhost', database='trends')
     print('connected to database')
@@ -53,7 +53,6 @@ def find_trends():
             param = {'id' : woeid}
             r = requests.get(url = url, headers = {'authorization': 'Bearer ' + bearer}, params = param).json()
             response.append(r)
-            print('acquiring trends for {}'.format(woeid))
 
         for i in response:
             l1 = []
@@ -63,7 +62,6 @@ def find_trends():
             l2.append('-'.join(l1))
 
         trends = l2
-        print('All trends acquired')
         trends = tuple(trends)
         cursor.close()
         connector.close()
@@ -75,7 +73,6 @@ def find_trends():
             print(trend)
             connector.commit()
 
-        print('20 trends inserted')
         cursor.close()
         connector.close()
 
